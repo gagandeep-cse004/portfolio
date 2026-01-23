@@ -1,0 +1,26 @@
+# robots.txt for Gagandeep Singh Portfolio
+# Website: https://gagandeep-cse004.github.io/portfolio/
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://gagandeep-cse004.github.io/portfolio/sitemap.xml
+
+# Crawl-delay (optional - be gentle on server)
+Crawl-delay: 10
+
+# Disallow unnecessary files/folders (if any)
+# Disallow: /private/
+# Disallow: /admin/
+
+# Allow important resources for rendering
+Allow: /css/
+Allow: /images/
+Allow: /js/
+
+# Block common unnecessary files
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /404.html
