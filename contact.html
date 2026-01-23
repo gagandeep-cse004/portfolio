@@ -1892,8 +1892,11 @@
                     </div>
                     <h3>Schedule Call</h3>
                     <p>Book a meeting</p>
-                    <a href="#">calendly.com/gagandeep</a>
+                    <a href="https://wa.me/918264819037?text=Hello%20how%20can%20I%20help%20you" target="_blank">
+                        WhatsApp
+                    </a>
                 </div>
+
             </div>
         </div>
     </section>
@@ -1963,21 +1966,21 @@
                         <div class="contact-social">
                             <h4>Follow Me</h4>
                             <div class="contact-social-links">
-                                <a href="#" class="contact-social-link">
+                                <a href="https://github.com/gagandeep-cse004" class="contact-social-link">
                                     <i class="fab fa-github"></i>
                                 </a>
-                                <a href="#" class="contact-social-link">
+                                <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/" class="contact-social-link">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#" class="contact-social-link">
+                                <a href="https://twitter.com" class="contact-social-link">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="#" class="contact-social-link">
+                                <a href="https://instagram.com/13__gagan735" class="contact-social-link">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="#" class="contact-social-link">
+                                <!-- <a href="#" class="contact-social-link">
                                     <i class="fab fa-dribbble"></i>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -2075,7 +2078,7 @@
                                 required></textarea>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Attachments (Optional)</label>
                             <label class="file-upload" for="fileUpload">
                                 <input type="file" id="fileUpload" name="files" multiple
@@ -2086,7 +2089,7 @@
                                 <p><strong>Click to upload</strong> or drag and drop</p>
                                 <p class="file-types">PDF, DOC, PNG, JPG (Max 10MB)</p>
                             </label>
-                        </div>
+                        </div> -->
 
                         <div class="form-submit">
                             <p><i class="fas fa-lock"></i> Your information is secure and will never be shared.</p>
@@ -2102,7 +2105,7 @@
     </section>
 
     <!-- Map Section -->
-    <section class="map-section section">
+    <!-- <section class="map-section section">
         <div class="container">
             <div class="map-container">
                 <div class="map-wrapper">
@@ -2147,7 +2150,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- FAQ Section -->
     <section class="faq-section">
@@ -2339,7 +2342,7 @@
                         <i class="fas fa-rocket"></i>
                         Start a Project
                     </a>
-                    <a href="tel:+1234567890" class="btn btn-lg"
+                    <a href="tel:+91 8264819037" class="btn btn-lg"
                         style="background: transparent; border: 2px solid var(--white); box-shadow: none;">
                         <i class="fas fa-phone"></i>
                         Call Me Now
@@ -2365,10 +2368,11 @@
                         with modern technologies and best practices.
                     </p>
                     <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/gagandeep-cse004" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/" class="social-link"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/13__gagan735" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -2442,9 +2446,16 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    
+
+    <!-- JavaScript -->
     <!-- JavaScript -->
     <script>
-        // Scroll Events
+        // ==================== CONFIGURATION ====================
+        // Replace with your Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzefULCtDTTpdSzorcn2q_l0dXnCNa5lnd2UBokK9D1CuSDdSaCrf_8PlIyzXuuSvQu/exec';
+
+        // ==================== SCROLL EVENTS ====================
         let lastScroll = 0;
         const topBar = document.getElementById('topBar');
         const navbar = document.getElementById('navbar');
@@ -2471,7 +2482,7 @@
             }
         });
 
-        // Mobile Menu Toggle
+        // ==================== MOBILE MENU ====================
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const navMenu = document.getElementById('navMenu');
 
@@ -2488,12 +2499,12 @@
             });
         });
 
-        // Back to Top
+        // ==================== BACK TO TOP ====================
         document.getElementById('backToTop').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Budget Slider
+        // ==================== BUDGET SLIDER ====================
         const budgetSlider = document.getElementById('budget');
         const budgetValue = document.getElementById('budgetValue');
 
@@ -2506,30 +2517,35 @@
             }
         });
 
-        // FAQ Accordion
+        // ==================== FAQ ACCORDION ====================
         const faqItems = document.querySelectorAll('.faq-item');
 
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
 
             question.addEventListener('click', () => {
-                // Close other items
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
-
-                // Toggle current item
                 item.classList.toggle('active');
             });
         });
 
-        // Contact Form Submission
+        // ==================== CONTACT FORM SUBMISSION ====================
         const contactForm = document.getElementById('contactForm');
+        const serviceCheckboxes = document.querySelectorAll('input[name="services"]');
 
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            // Validate services selection
+            const checkedServices = Array.from(serviceCheckboxes).filter(cb => cb.checked);
+            if (checkedServices.length === 0) {
+                showNotification('Please select at least one service.', 'error');
+                return;
+            }
 
             // Get submit button
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -2539,8 +2555,43 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            // Simulate form submission
-            setTimeout(() => {
+            try {
+                // Collect form data
+                const formData = {
+                    firstName: document.getElementById('firstName').value.trim(),
+                    lastName: document.getElementById('lastName').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    services: checkedServices.map(cb => cb.value).join(', '),
+                    budget: budgetValue.textContent,
+                    projectType: document.getElementById('projectType').value,
+                    message: document.getElementById('message').value.trim()
+                };
+
+                // Validate required fields
+                if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+                    throw new Error('Please fill in all required fields.');
+                }
+
+                // Validate email format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    throw new Error('Please enter a valid email address.');
+                }
+
+                // Send data to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Since mode is 'no-cors', we can't read the response
+                // Assume success if no error is thrown
+
                 // Show success modal
                 document.getElementById('successModal').classList.add('active');
 
@@ -2552,10 +2603,113 @@
                 // Reset button
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+
+                // Log success
+                console.log('Form submitted successfully!', formData);
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+
+                // Show error notification
+                showNotification(error.message || 'Something went wrong. Please try again.', 'error');
+
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
 
-        // Close Success Modal
+        // ==================== NOTIFICATION SYSTEM ====================
+        function showNotification(message, type = 'success') {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 140px;
+                right: 20px;
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+
+            const content = notification.querySelector('.notification-content');
+            content.style.cssText = `
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 20px;
+                background: ${type === 'success' ? '#10B981' : '#EF4444'};
+                color: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                font-weight: 500;
+            `;
+
+            const closeBtn = notification.querySelector('.notification-close');
+            closeBtn.style.cssText = `
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 5px;
+                margin-left: 10px;
+                opacity: 0.8;
+            `;
+
+            // Add to page
+            document.body.appendChild(notification);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Add notification animations
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+
+        // ==================== SUCCESS MODAL ====================
         function closeSuccessModal() {
             document.getElementById('successModal').classList.remove('active');
         }
@@ -2567,19 +2721,28 @@
             }
         });
 
-        // File Upload Display
-        const fileUpload = document.getElementById('fileUpload');
-        const fileUploadLabel = fileUpload.closest('.file-upload');
-
-        fileUpload.addEventListener('change', function () {
-            const files = this.files;
-            if (files.length > 0) {
-                const fileNames = Array.from(files).map(f => f.name).join(', ');
-                fileUploadLabel.querySelector('p').innerHTML = `<strong>${files.length} file(s) selected:</strong> ${fileNames}`;
+        // Close modal on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeSuccessModal();
             }
         });
 
-        // Smooth scroll for anchor links
+        // ==================== FILE UPLOAD (if needed) ====================
+        const fileUpload = document.getElementById('fileUpload');
+        if (fileUpload) {
+            const fileUploadLabel = fileUpload.closest('.file-upload');
+
+            fileUpload.addEventListener('change', function () {
+                const files = this.files;
+                if (files.length > 0) {
+                    const fileNames = Array.from(files).map(f => f.name).join(', ');
+                    fileUploadLabel.querySelector('p').innerHTML = `<strong>${files.length} file(s) selected:</strong> ${fileNames}`;
+                }
+            });
+        }
+
+        // ==================== SMOOTH SCROLL ====================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -2597,7 +2760,7 @@
             });
         });
 
-        // Form Input Animation
+        // ==================== FORM INPUT ANIMATION ====================
         document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(input => {
             input.addEventListener('focus', function () {
                 this.parentElement.classList.add('focused');
@@ -2608,19 +2771,7 @@
             });
         });
 
-        // Service Options - at least one required
-        const serviceCheckboxes = document.querySelectorAll('input[name="services"]');
-
-        contactForm.addEventListener('submit', function (e) {
-            const checked = Array.from(serviceCheckboxes).some(cb => cb.checked);
-            if (!checked) {
-                e.preventDefault();
-                alert('Please select at least one service.');
-                return false;
-            }
-        });
-
-        // Add animation on scroll
+        // ==================== SCROLL ANIMATIONS ====================
         const animateOnScroll = () => {
             const elements = document.querySelectorAll('.contact-card, .faq-item, .testimonial-card');
 
@@ -2644,6 +2795,74 @@
 
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
+
+        // ==================== REAL-TIME FORM VALIDATION ====================
+        const inputs = {
+            firstName: document.getElementById('firstName'),
+            lastName: document.getElementById('lastName'),
+            email: document.getElementById('email'),
+            message: document.getElementById('message')
+        };
+
+        // Add real-time validation
+        inputs.email.addEventListener('blur', function () {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.style.borderColor = '#EF4444';
+                showFieldError(this, 'Please enter a valid email address');
+            } else {
+                this.style.borderColor = '#10B981';
+                removeFieldError(this);
+            }
+        });
+
+        inputs.firstName.addEventListener('blur', function () {
+            validateRequired(this, 'First name is required');
+        });
+
+        inputs.lastName.addEventListener('blur', function () {
+            validateRequired(this, 'Last name is required');
+        });
+
+        inputs.message.addEventListener('blur', function () {
+            validateRequired(this, 'Message is required');
+        });
+
+        function validateRequired(input, message) {
+            if (!input.value.trim()) {
+                input.style.borderColor = '#EF4444';
+                showFieldError(input, message);
+            } else {
+                input.style.borderColor = '#10B981';
+                removeFieldError(input);
+            }
+        }
+
+        function showFieldError(input, message) {
+            removeFieldError(input);
+            const error = document.createElement('span');
+            error.className = 'field-error';
+            error.style.cssText = 'color: #EF4444; font-size: 0.85rem; margin-top: 5px; display: block;';
+            error.textContent = message;
+            input.parentElement.appendChild(error);
+        }
+
+        function removeFieldError(input) {
+            const error = input.parentElement.querySelector('.field-error');
+            if (error) error.remove();
+        }
+
+        // Reset validation on input
+        Object.values(inputs).forEach(input => {
+            input.addEventListener('input', function () {
+                this.style.borderColor = '';
+                removeFieldError(this);
+            });
+        });
+
+        // ==================== CONSOLE MESSAGE ====================
+        console.log('%c👋 Contact Form Ready!', 'color: #2563EB; font-size: 20px; font-weight: bold;');
+        console.log('%cForm submissions will be saved to Google Sheets', 'color: #10B981; font-size: 14px;');
     </script>
 </body>
 
