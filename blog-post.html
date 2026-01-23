@@ -1,0 +1,3465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>Building Scalable React Applications | Gagandeep Singh</title>
+    <meta name="title" content="Building Scalable React Applications: A Complete Guide for 2024">
+    <meta name="description"
+        content="Learn how to build production-ready React applications with best practices, performance optimization, state management, and modern tooling.">
+    <meta name="keywords" content="React, React Tutorial, Scalable React, React Best Practices, React 2024">
+    <meta name="author" content="Gagandeep Singh">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://gagandeep.dev/blog/building-scalable-react-applications.html">
+    <meta property="og:title" content="Building Scalable React Applications: A Complete Guide for 2024">
+    <meta property="og:description"
+        content="Learn how to build production-ready React applications with best practices.">
+    <meta property="og:image" content="https://gagandeep.dev/images/react-scalable-og.jpg">
+    <meta property="article:published_time" content="2024-01-15T10:00:00+00:00">
+    <meta property="article:author" content="Gagandeep Singh">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Scalable React Applications">
+    <meta name="twitter:description" content="Learn how to build production-ready React applications.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gagandeep.dev/blog/building-scalable-react-applications.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232563EB'/><stop offset='100%' style='stop-color:%230EA5E9'/></linearGradient></defs><rect fill='url(%23grad)' rx='20' width='100' height='100'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='50' font-weight='bold' fill='white'>GS</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Prism.js for Code Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Building Scalable React Applications: A Complete Guide for 2024",
+        "image": "https://gagandeep.dev/images/react-scalable.jpg",
+        "datePublished": "2024-01-15T10:00:00+00:00",
+        "dateModified": "2024-01-15T10:00:00+00:00",
+        "author": {
+            "@type": "Person",
+            "name": "Gagandeep Singh",
+            "url": "https://gagandeep.dev"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Gagandeep Singh"
+        },
+        "description": "Learn how to build production-ready React applications with best practices, performance optimization, state management, and modern tooling.",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://gagandeep.dev/blog/building-scalable-react-applications.html"
+        }
+    }
+    </script>
+
+    <style>
+        /* ==================== ROOT VARIABLES ==================== */
+        :root {
+            --primary: #2563EB;
+            --primary-light: #3B82F6;
+            --primary-dark: #1D4ED8;
+            --secondary: #0EA5E9;
+            --secondary-light: #38BDF8;
+            --accent: #06B6D4;
+            --dark: #0F172A;
+            --dark-blue: #1E293B;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --gray: #64748B;
+            --gray-light: #E2E8F0;
+            --gray-dark: #475569;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --orange: #F97316;
+            --teal: #14B8A6;
+
+            --gradient-primary: linear-gradient(135deg, #2563EB 0%, #0EA5E9 100%);
+            --gradient-secondary: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+            --gradient-dark: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+
+            --transition: all 0.3s ease;
+
+            /* Spacing variables for consistency */
+            --section-padding: 80px;
+            --container-padding: 20px;
+        }
+
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==================== READING PROGRESS BAR ==================== */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* ==================== TOP BAR ==================== */
+        .top-bar {
+            background: var(--dark);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 14px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .top-bar.hide {
+            transform: translateY(-100%);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .top-bar-item:hover {
+            color: var(--primary-light);
+        }
+
+        .top-bar-item i {
+            color: var(--primary-light);
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 52px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            top: 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1002;
+            position: relative;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* ==================== CONTAINER ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* ==================== ARTICLE HEADER ==================== */
+        .article-header {
+            background: var(--gradient-primary);
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .article-header-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 var(--container-padding);
+        }
+
+        .article-breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .article-breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .article-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .article-title {
+            font-size: clamp(1.75rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            font-family: var(--font-primary);
+        }
+
+        .article-excerpt {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .author-title {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            display: block;
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            white-space: nowrap;
+        }
+
+        /* ==================== FEATURED IMAGE ==================== */
+        .featured-image-wrapper {
+            max-width: 1000px;
+            margin: -60px auto 0;
+            padding: 0 var(--container-padding);
+            position: relative;
+            z-index: 10;
+        }
+
+        .featured-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==================== ARTICLE LAYOUT ==================== */
+        .article-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px var(--container-padding);
+        }
+
+        /* ==================== TABLE OF CONTENTS ==================== */
+        .toc-sidebar {
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+            max-height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .toc-widget {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .toc-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-title i {
+            color: var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            display: block;
+            color: var(--gray);
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-left: 3px solid transparent;
+            transition: var(--transition);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--primary);
+            border-left-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .toc-list .toc-h3 {
+            padding-left: 25px;
+            font-size: 0.8rem;
+        }
+
+        /* ==================== ARTICLE CONTENT ==================== */
+        .article-content {
+            max-width: 100%;
+            min-width: 0;
+            /* Prevents grid blowout */
+        }
+
+        .article-body {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.9;
+            color: var(--dark);
+        }
+
+        .article-body h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin: 50px 0 25px;
+            font-family: var(--font-primary);
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-light);
+            scroll-margin-top: 150px;
+        }
+
+        .article-body h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .article-body h3 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            font-weight: 600;
+            color: var(--dark);
+            margin: 35px 0 20px;
+            font-family: var(--font-primary);
+            scroll-margin-top: 150px;
+        }
+
+        .article-body h4 {
+            font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+            color: var(--dark);
+            margin: 30px 0 15px;
+        }
+
+        .article-body p {
+            margin-bottom: 20px;
+            color: var(--gray-dark);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .article-body a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-color: rgba(37, 99, 235, 0.3);
+            text-underline-offset: 3px;
+            word-break: break-word;
+        }
+
+        .article-body a:hover {
+            text-decoration-color: var(--primary);
+        }
+
+        .article-body strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin: 25px 0;
+            padding-left: 25px;
+        }
+
+        .article-body ul {
+            list-style: disc;
+        }
+
+        .article-body ol {
+            list-style: decimal;
+        }
+
+        .article-body li {
+            margin-bottom: 12px;
+            color: var(--gray-dark);
+        }
+
+        .article-body blockquote {
+            margin: 30px 0;
+            padding: 20px 25px;
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            color: var(--gray-dark);
+        }
+
+        .article-body blockquote p {
+            margin-bottom: 0;
+        }
+
+        .article-body img {
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-lg);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .article-body figure {
+            margin: 30px 0;
+        }
+
+        .article-body figcaption {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Code Blocks */
+        .article-body pre {
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .article-body code {
+            font-family: var(--font-code);
+            font-size: 0.85em;
+        }
+
+        .article-body p code,
+        .article-body li code {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            word-break: break-word;
+        }
+
+        .code-block {
+            position: relative;
+            margin: 30px 0;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e1e1e;
+            padding: 12px 15px;
+            border-radius: 15px 15px 0 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .code-language {
+            color: var(--gray);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .code-copy {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .code-copy:hover {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .code-block pre {
+            margin: 0;
+            border-radius: 0 0 15px 15px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .code-block pre code {
+            display: block;
+            padding: 20px 15px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-box.tip {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .info-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .info-box.note {
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .info-box-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        .info-box.tip .info-box-icon {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .info-box.warning .info-box-icon {
+            background: var(--warning);
+            color: var(--white);
+        }
+
+        .info-box.note .info-box-icon {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .info-box-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .info-box-content h4 {
+            margin: 0 0 8px;
+            font-size: 0.95rem;
+        }
+
+        .info-box-content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ==================== ARTICLE SIDEBAR ==================== */
+        .article-sidebar {
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+            max-height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .sidebar-widget {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-light);
+            position: relative;
+        }
+
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        /* Share Widget */
+        .share-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 10px;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+        }
+
+        .share-btn.facebook {
+            background: #1877F2;
+        }
+
+        .share-btn.linkedin {
+            background: #0A66C2;
+        }
+
+        .share-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .share-btn.copy-link {
+            background: var(--dark);
+        }
+
+        /* Author Widget */
+        .author-widget {
+            text-align: center;
+        }
+
+        .author-widget-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .author-widget h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .author-widget p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .author-widget-bio {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .author-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .author-social a {
+            width: 38px;
+            height: 38px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .author-social a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Newsletter Widget */
+        .newsletter-widget {
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+
+        .newsletter-widget .widget-title {
+            color: var(--white);
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-widget .widget-title::after {
+            background: var(--white);
+        }
+
+        .newsletter-widget p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-widget input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-widget button {
+            width: 100%;
+            padding: 12px;
+            background: var(--white);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-widget button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Tags Widget */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag-link {
+            padding: 6px 14px;
+            background: var(--light);
+            border-radius: 20px;
+            color: var(--gray-dark);
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .tag-link:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* ==================== ARTICLE FOOTER ==================== */
+        .article-footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .article-tags {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 30px 0;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .article-tags-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .article-tags a {
+            padding: 6px 16px;
+            background: var(--light);
+            border-radius: 20px;
+            color: var(--gray-dark);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .article-tags a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Article Navigation */
+        .article-navigation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 40px 0;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .nav-post {
+            padding: 20px;
+            background: var(--light);
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .nav-post:hover {
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .nav-post-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .nav-post.next {
+            text-align: right;
+        }
+
+        .nav-post.next .nav-post-label {
+            justify-content: flex-end;
+        }
+
+        .nav-post h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .nav-post:hover h4 {
+            color: var(--primary);
+        }
+
+        /* ==================== AUTHOR BIO SECTION ==================== */
+        .author-bio-section {
+            background: var(--light);
+            padding: 50px 0;
+        }
+
+        .author-bio-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .author-bio-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .author-bio-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .author-bio-content h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .author-bio-content .author-title {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .author-bio-content p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .author-bio-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .author-bio-links a {
+            width: 38px;
+            height: 38px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .author-bio-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* ==================== RELATED POSTS ==================== */
+        .related-posts-section {
+            padding: var(--section-padding) 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0 var(--container-padding);
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-family: var(--font-primary);
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .related-post-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .related-post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .related-post-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .related-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .related-post-card:hover .related-post-image img {
+            transform: scale(1.1);
+        }
+
+        .related-post-content {
+            padding: 20px;
+        }
+
+        .related-post-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .related-post-title {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .related-post-card:hover .related-post-title {
+            color: var(--primary);
+        }
+
+        .related-post-meta {
+            display: flex;
+            gap: 15px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .related-post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .related-post-meta i {
+            color: var(--primary);
+            font-size: 0.75rem;
+        }
+
+        /* ==================== COMMENTS SECTION ==================== */
+        .comments-section {
+            padding: var(--section-padding) 0;
+            background: var(--light);
+        }
+
+        .comments-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .comments-count {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .comments-sort {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comments-sort label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .comments-sort select {
+            padding: 8px 15px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            background: var(--white);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Comment Form */
+        .comment-form-wrapper {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .comment-form-wrapper h3 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid var(--gray-light);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: var(--font-secondary);
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Comments List */
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .comment {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .comment-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .comment-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .comment-author-info h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .comment-date {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .comment-action {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .comment-action:hover {
+            color: var(--primary);
+        }
+
+        .comment-body {
+            color: var(--gray-dark);
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .comment-footer {
+            display: flex;
+            gap: 20px;
+        }
+
+        .comment-reply-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+        }
+
+        /* Nested Comments */
+        .comment-replies {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--gray-light);
+        }
+
+        .comment-replies .comment {
+            background: var(--light);
+        }
+
+        /* ==================== NEWSLETTER CTA ==================== */
+        .newsletter-cta {
+            background: var(--gradient-dark);
+            padding: var(--section-padding) 0;
+            text-align: center;
+        }
+
+        .newsletter-cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            color: var(--white);
+        }
+
+        .newsletter-cta h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 15px;
+            font-family: var(--font-primary);
+        }
+
+        .newsletter-cta p {
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form-inline {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form-inline input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            min-width: 0;
+        }
+
+        .newsletter-form-inline button {
+            padding: 15px 30px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form-inline button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: var(--section-padding) 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--gray-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            transition: transform 0.4s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--gray-light);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact i {
+            color: var(--primary-light);
+            margin-top: 4px;
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: var(--gray-light);
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--primary-light);
+        }
+
+        /* ==================== BACK TO TOP ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+        }
+
+        /* ==================== RESPONSIVE STYLES ==================== */
+
+        /* Extra Large Screens (1400px and up) */
+        @media (min-width: 1400px) {
+            .article-layout {
+                gap: 50px;
+            }
+        }
+
+        /* Large Screens (1200px and below) */
+        @media (max-width: 1200px) {
+            .article-layout {
+                grid-template-columns: 1fr 280px;
+                gap: 30px;
+            }
+
+            .toc-sidebar {
+                display: none;
+            }
+        }
+
+        /* Medium Screens / Tablets (991px and below) */
+        @media (max-width: 991px) {
+            :root {
+                --section-padding: 60px;
+            }
+
+            .top-bar {
+                display: none;
+            }
+
+            .navbar {
+                top: 0;
+            }
+
+            .navbar .container {
+                height: 65px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                transition: right 0.3s ease;
+                z-index: 1001;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-link {
+                font-size: 1.3rem;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-cta {
+                display: inline-flex;
+                margin-top: 20px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .article-header {
+                padding: 140px 0 80px;
+            }
+
+            .article-layout {
+                grid-template-columns: 1fr;
+                padding: 40px var(--container-padding);
+            }
+
+            .article-sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                max-height: none;
+                overflow: visible;
+            }
+
+            .sidebar-widget {
+                margin-bottom: 0;
+            }
+
+            .related-posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .author-bio-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .author-bio-avatar {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+
+            .author-bio-links {
+                justify-content: center;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .featured-image-wrapper {
+                margin-top: -40px;
+            }
+
+            .featured-image {
+                border-radius: 15px;
+            }
+        }
+
+        /* Small Tablets / Large Phones (768px and below) */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 50px;
+                --container-padding: 15px;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .article-header {
+                padding: 120px 0 60px;
+            }
+
+            .article-category {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .article-stats {
+                gap: 15px;
+            }
+
+            .stat {
+                font-size: 0.85rem;
+            }
+
+            .article-body h2 {
+                margin: 40px 0 20px;
+            }
+
+            .code-block pre code {
+                font-size: 0.8rem;
+                padding: 15px;
+            }
+
+            .info-box {
+                flex-direction: column;
+                gap: 12px;
+                padding: 18px;
+            }
+
+            .info-box-icon {
+                align-self: flex-start;
+            }
+
+            .article-navigation {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .nav-post.next {
+                text-align: left;
+            }
+
+            .nav-post.next .nav-post-label {
+                justify-content: flex-start;
+            }
+
+            .article-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-post-image {
+                height: 180px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form-inline {
+                flex-direction: column;
+            }
+
+            .newsletter-form-inline input {
+                width: 100%;
+            }
+
+            .newsletter-form-inline button {
+                width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 35px;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-contact li {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+
+            .author-bio-card {
+                padding: 20px;
+            }
+
+            .author-bio-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 1.8rem;
+            }
+
+            .comment-replies {
+                padding-left: 15px;
+            }
+        }
+
+        /* Small Phones (480px and below) */
+        @media (max-width: 480px) {
+            :root {
+                --container-padding: 12px;
+            }
+
+            .navbar .container {
+                height: 60px;
+            }
+
+            .article-header {
+                padding: 110px 0 50px;
+            }
+
+            .featured-image-wrapper {
+                margin-top: -30px;
+            }
+
+            .featured-image {
+                border-radius: 12px;
+            }
+
+            .article-body {
+                line-height: 1.8;
+            }
+
+            .article-body ul,
+            .article-body ol {
+                padding-left: 20px;
+            }
+
+            .article-body blockquote {
+                padding: 15px 18px;
+                margin: 25px 0;
+            }
+
+            .code-header {
+                padding: 10px 12px;
+            }
+
+            .code-block pre code {
+                font-size: 0.75rem;
+                padding: 12px;
+            }
+
+            .sidebar-widget {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .widget-title {
+                font-size: 1rem;
+            }
+
+            .share-btn {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+
+            .author-widget-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.6rem;
+            }
+
+            .comments-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .comment-form-wrapper {
+                padding: 20px;
+            }
+
+            .comment {
+                padding: 18px;
+            }
+
+            .comment-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 0.85rem;
+            }
+
+            .comment-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .comment-actions {
+                margin-top: 10px;
+            }
+
+            .related-post-content {
+                padding: 15px;
+            }
+
+            .related-post-title {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .back-to-top {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .article-tags {
+                padding: 20px 0;
+            }
+
+            .article-tags a {
+                padding: 5px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Very Small Phones (360px and below) */
+        @media (max-width: 360px) {
+            .article-title {
+                font-size: 1.5rem;
+            }
+
+            .article-excerpt {
+                font-size: 0.95rem;
+            }
+
+            .author-avatar {
+                width: 42px;
+                height: 42px;
+                font-size: 0.95rem;
+            }
+
+            .author-name {
+                font-size: 0.9rem;
+            }
+
+            .author-title {
+                font-size: 0.8rem;
+            }
+
+            .stat {
+                font-size: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .newsletter-cta h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Landscape Mode for Phones */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .nav-menu {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+            }
+
+            .nav-cta {
+                margin-top: 10px;
+                padding: 8px 20px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .top-bar,
+            .navbar,
+            .toc-sidebar,
+            .article-sidebar,
+            .back-to-top,
+            .reading-progress,
+            .comments-section,
+            .newsletter-cta,
+            .related-posts-section,
+            .article-navigation,
+            .share-buttons,
+            .footer {
+                display: none !important;
+            }
+
+            .article-layout {
+                display: block;
+            }
+
+            .article-content {
+                max-width: 100%;
+            }
+
+            .article-header {
+                background: none;
+                color: var(--dark);
+                padding: 20px 0;
+            }
+
+            .article-category,
+            .article-breadcrumb {
+                display: none;
+            }
+
+            .featured-image-wrapper {
+                margin-top: 20px;
+            }
+
+            .code-block {
+                break-inside: avoid;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --gray: #333;
+                --gray-light: #ccc;
+            }
+
+            .code-block pre {
+                border: 2px solid var(--dark);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar" id="topBar">
+        <div class="container">
+            <div class="top-bar-left">
+                <a href="tel:+918264819037" class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 8264819037</span>
+                </a>
+                <a href="mailto:gagangujjar004@gmail.com" class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>gagangujjar004@gmail.com</span>
+                </a>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://github.com/gagandeep-cse004" target="_blank" class="social-link" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/" target="_blank"
+                    class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com/13__gagan735" target="_blank" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">GS</div>
+                <span>Gagandeep</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Hire Me</a></li>
+            </ul>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-pattern"></div>
+        <div class="container">
+            <div class="article-header-content">
+                <div class="article-breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <a href="blog.html">Blog</a>
+                    <span>/</span>
+                    <span>React</span>
+                </div>
+                <span class="article-category">
+                    <i class="fab fa-react"></i> React
+                </span>
+                <h1 class="article-title">Building Scalable React Applications: A Complete Guide for 2024</h1>
+                <p class="article-excerpt">
+                    Learn how to build production-ready React applications with best practices,
+                    performance optimization, state management, and modern tooling.
+                </p>
+                <div class="article-meta">
+                    <div class="article-author">
+                        <div class="author-avatar">GS</div>
+                        <div class="author-info">
+                            <span class="author-name">Gagandeep Singh</span>
+                            <span class="author-title">Full Stack Developer</span>
+                        </div>
+                    </div>
+                    <div class="article-stats">
+                        <span class="stat">
+                            <i class="far fa-calendar-alt"></i>
+                            Jan 15, 2024
+                        </span>
+                        <span class="stat">
+                            <i class="far fa-clock"></i>
+                            12 min read
+                        </span>
+                        <span class="stat">
+                            <i class="far fa-eye"></i>
+                            2.5K views
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="featured-image-wrapper">
+        <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop"
+                alt="Building Scalable React Applications" loading="eager">
+        </div>
+    </div>
+
+    <!-- Article Layout -->
+    <div class="article-layout">
+        <!-- Table of Contents Sidebar -->
+        <aside class="toc-sidebar">
+            <div class="toc-widget">
+                <h3 class="toc-title">
+                    <i class="fas fa-list"></i>
+                    Table of Contents
+                </h3>
+                <ul class="toc-list" id="tocList">
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#project-structure">Project Structure</a></li>
+                    <li><a href="#component-architecture" class="toc-h3">Component Architecture</a></li>
+                    <li><a href="#state-management">State Management</a></li>
+                    <li><a href="#redux-toolkit" class="toc-h3">Redux Toolkit</a></li>
+                    <li><a href="#zustand" class="toc-h3">Zustand</a></li>
+                    <li><a href="#performance">Performance Optimization</a></li>
+                    <li><a href="#code-splitting" class="toc-h3">Code Splitting</a></li>
+                    <li><a href="#memoization" class="toc-h3">Memoization</a></li>
+                    <li><a href="#testing">Testing Strategies</a></li>
+                    <li><a href="#deployment">Deployment</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Article Content -->
+        <article class="article-content">
+            <div class="article-body">
+                <h2 id="introduction">Introduction</h2>
+                <p>
+                    Building scalable React applications is more than just writing components that work. It's about
+                    creating a codebase that can grow with your team, handle increasing complexity, and maintain
+                    performance as your user base expands. In this comprehensive guide, we'll explore the best
+                    practices and patterns that will help you build React applications that stand the test of time.
+                </p>
+                <p>
+                    Whether you're starting a new project or looking to improve an existing codebase, these principles
+                    will help you make better architectural decisions and write more maintainable code.
+                </p>
+
+                <div class="info-box note">
+                    <div class="info-box-icon">
+                        <i class="fas fa-info"></i>
+                    </div>
+                    <div class="info-box-content">
+                        <h4>Prerequisites</h4>
+                        <p>This guide assumes you have basic knowledge of React, JavaScript ES6+, and modern web
+                            development concepts.</p>
+                    </div>
+                </div>
+
+                <h2 id="project-structure">Project Structure</h2>
+                <p>
+                    A well-organized project structure is the foundation of any scalable application. Here's a
+                    battle-tested structure that scales well for medium to large applications:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Folder Structure</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-bash">src/
+├── assets/           # Static assets
+├── components/       # Reusable UI components
+│   ├── common/       # Generic components
+│   ├── layout/       # Layout components
+│   └── features/     # Feature-specific
+├── hooks/            # Custom React hooks
+├── pages/            # Page components
+├── services/         # API calls
+├── store/            # State management
+├── utils/            # Utility functions
+├── types/            # TypeScript types
+├── styles/           # Global styles
+└── constants/        # App constants</code></pre>
+                </div>
+
+                <h3 id="component-architecture">Component Architecture</h3>
+                <p>
+                    When building components, follow these principles to ensure they're reusable and maintainable:
+                </p>
+                <ul>
+                    <li><strong>Single Responsibility:</strong> Each component should do one thing well</li>
+                    <li><strong>Composition over Inheritance:</strong> Use composition patterns to build complex UIs
+                    </li>
+                    <li><strong>Props Interface:</strong> Define clear prop interfaces with TypeScript</li>
+                    <li><strong>Separation of Concerns:</strong> Keep logic, presentation, and styling separate</li>
+                </ul>
+
+                <p>Here's an example of a well-structured component:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript (React)</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-typescript">// Button.tsx
+import React from 'react';
+import styles from './Button.module.css';
+
+interface ButtonProps {
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+export const Button: React.FC&lt;ButtonProps&gt; = ({
+  variant = 'primary',
+  size = 'md',
+  isLoading = false,
+  children,
+  onClick,
+}) => {
+  return (
+    &lt;button
+      className={`${styles.button} ${styles[variant]}`}
+      disabled={isLoading}
+      onClick={onClick}
+    &gt;
+      {isLoading ? &lt;Spinner /&gt; : children}
+    &lt;/button&gt;
+  );
+};</code></pre>
+                </div>
+
+                <h2 id="state-management">State Management</h2>
+                <p>
+                    Choosing the right state management solution depends on your application's complexity.
+                    For most applications in 2024, I recommend considering these options:
+                </p>
+
+                <h3 id="redux-toolkit">Redux Toolkit</h3>
+                <p>
+                    Redux Toolkit is the official, opinionated way to write Redux logic:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-typescript">// userSlice.ts
+import { createSlice } from '@reduxjs/toolkit';
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState: { user: null, loading: false },
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    logout: (state) => {
+      state.user = null;
+    },
+  },
+});
+
+export const { setUser, logout } = userSlice.actions;
+export default userSlice.reducer;</code></pre>
+                </div>
+
+                <h3 id="zustand">Zustand</h3>
+                <p>
+                    For simpler applications, Zustand is an excellent choice with minimal boilerplate:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-typescript">// useStore.ts
+import { create } from 'zustand';
+
+interface AppState {
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+}
+
+export const useStore = create&lt;AppState&gt;((set) => ({
+  theme: 'light',
+  setTheme: (theme) => set({ theme }),
+}));</code></pre>
+                </div>
+
+                <div class="info-box tip">
+                    <div class="info-box-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="info-box-content">
+                        <h4>Pro Tip</h4>
+                        <p>Start with React's built-in useState and useContext. Only add external state management when
+                            you genuinely need it.</p>
+                    </div>
+                </div>
+
+                <h2 id="performance">Performance Optimization</h2>
+                <p>
+                    Performance is crucial for user experience. Here are the key optimization techniques:
+                </p>
+
+                <h3 id="code-splitting">Code Splitting</h3>
+                <p>
+                    Use React.lazy and Suspense to split your code:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript (React)</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-typescript">// App.tsx
+import { Suspense, lazy } from 'react';
+
+const Home = lazy(() => import('./pages/Home'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+
+function App() {
+  return (
+    &lt;Suspense fallback={&lt;Loading /&gt;}&gt;
+      &lt;Routes&gt;
+        &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+        &lt;Route path="/dashboard" element={&lt;Dashboard /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Suspense&gt;
+  );
+}</code></pre>
+                </div>
+
+                <h3 id="memoization">Memoization</h3>
+                <p>
+                    Use <code>React.memo</code>, <code>useMemo</code>, and <code>useCallback</code> strategically:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript (React)</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-typescript">// Memoizing calculations
+const value = useMemo(() => compute(data), [data]);
+
+// Memoizing callbacks
+const handleClick = useCallback(() => {
+  doSomething(id);
+}, [id]);
+
+// Memoizing components
+const MemoComponent = React.memo(({ data }) => (
+  &lt;div&gt;{data}&lt;/div&gt;
+));</code></pre>
+                </div>
+
+                <div class="info-box warning">
+                    <div class="info-box-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="info-box-content">
+                        <h4>Caution</h4>
+                        <p>Don't over-optimize! Use React DevTools Profiler to identify actual bottlenecks before
+                            optimizing.</p>
+                    </div>
+                </div>
+
+                <h2 id="testing">Testing Strategies</h2>
+                <p>
+                    A comprehensive testing strategy includes unit, integration, and end-to-end tests:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">TypeScript (Jest)</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="far fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <pre><code class="language-typescript">// Button.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button', () => {
+  it('renders correctly', () => {
+    render(&lt;Button&gt;Click me&lt;/Button&gt;);
+    expect(screen.getByRole('button')).toHaveTextContent('Click me');
+  });
+
+  it('calls onClick when clicked', () => {
+    const handleClick = jest.fn();
+    render(&lt;Button onClick={handleClick}&gt;Click&lt;/Button&gt;);
+    fireEvent.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});</code></pre>
+                </div>
+
+                <h2 id="deployment">Deployment</h2>
+                <p>
+                    For production deployment, consider these best practices:
+                </p>
+                <ul>
+                    <li><strong>Environment Variables:</strong> Use .env files for different environments</li>
+                    <li><strong>Build Optimization:</strong> Enable production builds with minification</li>
+                    <li><strong>CDN:</strong> Serve static assets through a CDN</li>
+                    <li><strong>CI/CD:</strong> Set up automated testing and deployment</li>
+                    <li><strong>Monitoring:</strong> Implement error tracking and performance monitoring</li>
+                </ul>
+
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=400&fit=crop"
+                        alt="CI/CD Pipeline Diagram" loading="lazy">
+                    <figcaption>A typical CI/CD pipeline for React applications</figcaption>
+                </figure>
+
+                <h2 id="conclusion">Conclusion</h2>
+                <p>
+                    Building scalable React applications requires careful planning and consistent application of
+                    best practices. By following the patterns outlined in this guide, you'll be well-equipped to
+                    create applications that are maintainable, performant, and ready to grow.
+                </p>
+
+                <blockquote>
+                    <p>"The best code is no code at all. The second-best code is simple, readable, and maintainable."
+                    </p>
+                </blockquote>
+
+                <p>
+                    If you found this guide helpful, consider sharing it with your team.
+                    Have questions? Drop a comment below or reach out on
+                    <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>!
+                </p>
+            </div>
+        </article>
+
+        <!-- Article Sidebar -->
+        <aside class="article-sidebar">
+            <!-- Share Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Share Article</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn twitter" onclick="shareTwitter(); return false;">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </a>
+                    <a href="#" class="share-btn facebook" onclick="shareFacebook(); return false;">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </a>
+                    <a href="#" class="share-btn linkedin" onclick="shareLinkedIn(); return false;">
+                        <i class="fab fa-linkedin-in"></i>
+                        LinkedIn
+                    </a>
+                    <a href="#" class="share-btn whatsapp" onclick="shareWhatsApp(); return false;">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                    <button class="share-btn copy-link" onclick="copyLink()">
+                        <i class="far fa-copy"></i>
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+
+            <!-- Author Widget -->
+            <div class="sidebar-widget author-widget">
+                <div class="author-widget-avatar">GS</div>
+                <h4>Gagandeep Singh</h4>
+                <p>Full Stack Developer</p>
+                <p class="author-widget-bio">
+                    Passionate developer with 5+ years of experience building web and mobile applications.
+                </p>
+                <div class="author-social">
+                    <a href="https://github.com/gagandeep-cse004" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget newsletter-widget">
+                <h3 class="widget-title">Newsletter</h3>
+                <p>Get weekly insights on web development delivered to your inbox.</p>
+                <form id="sidebarNewsletter">
+                    <input type="email" placeholder="Your email" required aria-label="Email address">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Tags Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Tags</h3>
+                <div class="tags-cloud">
+                    <a href="#" class="tag-link">React</a>
+                    <a href="#" class="tag-link">JavaScript</a>
+                    <a href="#" class="tag-link">TypeScript</a>
+                    <a href="#" class="tag-link">State Management</a>
+                    <a href="#" class="tag-link">Performance</a>
+                    <a href="#" class="tag-link">Testing</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Article Footer -->
+    <div class="article-footer">
+        <!-- Tags -->
+        <div class="article-tags">
+            <span class="article-tags-label">Tags:</span>
+            <a href="#">React</a>
+            <a href="#">JavaScript</a>
+            <a href="#">TypeScript</a>
+            <a href="#">Performance</a>
+            <a href="#">Best Practices</a>
+        </div>
+
+        <!-- Navigation -->
+        <!-- <div class="article-navigation">
+            <a href="blog-post-2.html" class="nav-post prev">
+                <span class="nav-post-label">
+                    <i class="fas fa-arrow-left"></i>
+                    Previous Article
+                </span>
+                <h4>JavaScript ES2024: New Features</h4>
+            </a>
+            <a href="blog-post-3.html" class="nav-post next">
+                <span class="nav-post-label">
+                    Next Article
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+                <h4>Advanced React Hooks Patterns</h4>
+            </a>
+        </div> -->
+    </div>
+
+    <!-- Author Bio Section -->
+    <section class="author-bio-section">
+        <div class="author-bio-card">
+            <div class="author-bio-avatar">GS</div>
+            <div class="author-bio-content">
+                <h3>Gagandeep Singh</h3>
+                <span class="author-title">Full Stack Developer & UI/UX Designer</span>
+                <p>
+                    I'm a passionate developer with over 5 years of experience building web and mobile applications.
+                    I love sharing knowledge and helping other developers grow.
+                </p>
+                <div class="author-bio-links">
+                    <a href="https://github.com/gagandeep-cse004" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/13__gagan735" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="mailto:gagangujjar004@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="related-posts-section">
+        <div class="section-header">
+            <h2 class="section-title">Related Articles</h2>
+            <p class="section-subtitle">You might also like these articles</p>
+        </div>
+        <div class="related-posts-grid">
+            <article class="related-post-card">
+                <a href="blog-post-2.html">
+                    <div class="related-post-image">
+                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop"
+                            alt="JavaScript ES2024" loading="lazy">
+                    </div>
+                </a>
+                <div class="related-post-content">
+                    <span class="related-post-category">JavaScript</span>
+                    <h3 class="related-post-title">
+                        <a href="blog-post-2.html">JavaScript ES2024: New Features You Need to Know</a>
+                    </h3>
+                    <div class="related-post-meta">
+                        <span><i class="far fa-calendar-alt"></i> Jan 12, 2024</span>
+                        <span><i class="far fa-clock"></i> 8 min</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="related-post-card">
+                <a href="blog-post-3.html">
+                    <div class="related-post-image">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop"
+                            alt="React Hooks" loading="lazy">
+                    </div>
+                </a>
+                <div class="related-post-content">
+                    <span class="related-post-category">React</span>
+                    <h3 class="related-post-title">
+                        <a href="blog-post-3.html">Advanced React Hooks Patterns for Clean Code</a>
+                    </h3>
+                    <div class="related-post-meta">
+                        <span><i class="far fa-calendar-alt"></i> Jan 10, 2024</span>
+                        <span><i class="far fa-clock"></i> 6 min</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="related-post-card">
+                <a href="blog-post-7.html">
+                    <div class="related-post-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop"
+                            alt="Next.js 14" loading="lazy">
+                    </div>
+                </a>
+                <div class="related-post-content">
+                    <span class="related-post-category">React</span>
+                    <h3 class="related-post-title">
+                        <a href="blog-post-7.html">Next.js 14: Server Components Deep Dive</a>
+                    </h3>
+                    <div class="related-post-meta">
+                        <span><i class="far fa-calendar-alt"></i> Dec 28, 2023</span>
+                        <span><i class="far fa-clock"></i> 9 min</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+        <div class="comments-container">
+            <div class="comments-header">
+                <h3 class="comments-count">45 Comments</h3>
+                <div class="comments-sort">
+                    <label for="sortComments">Sort by:</label>
+                    <select id="sortComments">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Comment Form -->
+            <div class="comment-form-wrapper">
+                <h3>Leave a Comment</h3>
+                <form class="comment-form" id="commentForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="commentName">Name *</label>
+                            <input type="text" id="commentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="commentEmail">Email *</label>
+                            <input type="email" id="commentEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="commentText">Comment *</label>
+                        <textarea id="commentText" placeholder="Write your comment here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Comments List -->
+            <div class="comments-list">
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="comment-avatar">JD</div>
+                            <div class="comment-author-info">
+                                <h4>John Davidson</h4>
+                                <span class="comment-date">January 16, 2024 at 10:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="comment-actions">
+                            <button class="comment-action" aria-label="Like comment">
+                                <i class="far fa-thumbs-up"></i> 12
+                            </button>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>This is exactly what I needed! The section on state management really cleared up my confusion
+                            between Redux Toolkit and Zustand.</p>
+                    </div>
+                    <div class="comment-footer">
+                        <button class="comment-reply-btn">
+                            <i class="fas fa-reply"></i> Reply
+                        </button>
+                    </div>
+
+                    <!-- Nested Reply -->
+                    <div class="comment-replies">
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-author">
+                                    <div class="comment-avatar">GS</div>
+                                    <div class="comment-author-info">
+                                        <h4>Gagandeep Singh <span
+                                                style="color: var(--primary); font-size: 0.75rem;">Author</span></h4>
+                                        <span class="comment-date">January 16, 2024 at 11:15 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <p>Thanks John! Glad it helped. Zustand is great for smaller to medium projects.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="comment-avatar">SK</div>
+                            <div class="comment-author-info">
+                                <h4>Sarah Kim</h4>
+                                <span class="comment-date">January 15, 2024 at 8:45 PM</span>
+                            </div>
+                        </div>
+                        <div class="comment-actions">
+                            <button class="comment-action" aria-label="Like comment">
+                                <i class="far fa-thumbs-up"></i> 8
+                            </button>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>Great article! Could you write a follow-up about testing strategies in more depth?</p>
+                    </div>
+                    <div class="comment-footer">
+                        <button class="comment-reply-btn">
+                            <i class="fas fa-reply"></i> Reply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-cta">
+        <div class="newsletter-cta-content">
+            <h2>Enjoyed this article?</h2>
+            <p>Subscribe to my newsletter for weekly insights on web development and design tips.</p>
+            <form class="newsletter-form-inline" id="ctaNewsletter">
+                <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">GS</div>
+                        <span style="color: var(--white);">Gagandeep</span>
+                    </div>
+                </div>
+                <p class="footer-desc">
+                    Full Stack Developer creating amazing digital experiences with modern technologies.
+                </p>
+                <div class="footer-social">
+                    <a href="https://github.com/gagandeep-cse004" class="social-link" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/" class="social-link"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com" class="social-link" aria-label="Twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/13__gagan735" class="social-link" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">React</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">Node.js</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>+91 8264819037</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>gagangujjar004@gmail.com</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Khad Bathlour, Ropar, India</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gagandeep Singh. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Prism.js for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+        // ==================== READING PROGRESS BAR ====================
+        const readingProgress = document.getElementById('readingProgress');
+
+        function updateReadingProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            readingProgress.style.width = progress + '%';
+        }
+
+        // ==================== SCROLL EVENTS ====================
+        let lastScroll = 0;
+        let ticking = false;
+        const topBar = document.getElementById('topBar');
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        function handleScroll() {
+            const currentScroll = window.pageYOffset;
+
+            // Top bar and navbar
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                topBar.classList.add('hide');
+                navbar.classList.add('scrolled');
+            } else {
+                topBar.classList.remove('hide');
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+
+            // Back to top button
+            if (currentScroll > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+
+            // Update reading progress
+            updateReadingProgress();
+
+            // Update TOC active state
+            updateTocActive();
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(handleScroll);
+                ticking = true;
+            }
+        });
+
+        // ==================== MOBILE MENU ====================
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking links
+        document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ==================== BACK TO TOP ====================
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==================== TABLE OF CONTENTS ====================
+        function updateTocActive() {
+            const headings = document.querySelectorAll('.article-body h2, .article-body h3');
+            const tocLinks = document.querySelectorAll('.toc-list a');
+
+            let current = '';
+
+            headings.forEach(heading => {
+                const top = heading.offsetTop - 200;
+                if (window.scrollY >= top) {
+                    current = heading.id;
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-list a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    const offset = window.innerWidth <= 991 ? 80 : 150;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ==================== CODE COPY ====================
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.color = '#10B981';
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.style.color = '';
+                }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = code;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="far fa-copy"></i> Copy';
+                }, 2000);
+            });
+        }
+
+        // ==================== SHARE FUNCTIONS ====================
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+
+        function shareTwitter() {
+            window.open(`https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareFacebook() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareLinkedIn() {
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareWhatsApp() {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const url = isMobile
+                ? `whatsapp://send?text=${pageTitle}%20${pageUrl}`
+                : `https://web.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+            window.open(url, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = document.querySelector('.copy-link');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            });
+        }
+
+        // ==================== NEWSLETTER FORMS ====================
+        document.querySelectorAll('#sidebarNewsletter, #ctaNewsletter').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                const input = form.querySelector('input');
+                const originalText = btn.innerHTML;
+
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+                    input.value = '';
+
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // ==================== COMMENT FORM ====================
+        document.getElementById('commentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Posted!';
+                e.target.reset();
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    alert('Thank you for your comment! It will appear after moderation.');
+                }, 1000);
+            }, 1500);
+        });
+
+        // ==================== LIKE BUTTONS ====================
+        document.querySelectorAll('.comment-action').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const icon = btn.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    btn.style.color = 'var(--primary)';
+                    const count = parseInt(btn.textContent.trim()) + 1;
+                    btn.innerHTML = `<i class="fas fa-thumbs-up"></i> ${count}`;
+                }
+            });
+        });
+
+        // ==================== INITIAL CALLS ====================
+        updateReadingProgress();
+        updateTocActive();
+    </script>
+</body>
+
+</html>
