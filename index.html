@@ -610,7 +610,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            
+
             position: relative;
         }
 
@@ -1522,13 +1522,13 @@
             const decorations = document.querySelectorAll('.decoration');
             decorations.forEach((dec, index) => {
                 const speed = (index + 1) * 0.5;
-                dec.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+                dec.style.transform = `translate(₹{moveX * speed}px, ₹{moveY * speed}px)`;
             });
 
             const floatingCards = document.querySelectorAll('.floating-card');
             floatingCards.forEach((card, index) => {
                 const speed = (index + 1) * 0.3;
-                card.style.transform = `translateY(${Math.sin(Date.now() / 1000) * 15}px) translate(${moveX * speed}px, ${moveY * speed}px)`;
+                card.style.transform = `translateY(₹{Math.sin(Date.now() / 1000) * 15}px) translate(₹{moveX * speed}px, ₹{moveY * speed}px)`;
             });
         });
 

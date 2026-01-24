@@ -2568,7 +2568,7 @@ export const Button: React.FC&lt;ButtonProps&gt; = ({
 }) => {
   return (
     &lt;button
-      className={`${styles.button} ${styles[variant]}`}
+      className={`₹{styles.button} ₹{styles[variant]}`}
       disabled={isLoading}
       onClick={onClick}
     &gt;
@@ -3365,22 +3365,22 @@ describe('Button', () => {
         const pageTitle = encodeURIComponent(document.title);
 
         function shareTwitter() {
-            window.open(`https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`, '_blank', 'width=600,height=400');
+            window.open(`https://twitter.com/intent/tweet?url=₹{pageUrl}&text=₹{pageTitle}`, '_blank', 'width=600,height=400');
         }
 
         function shareFacebook() {
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank', 'width=600,height=400');
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=₹{pageUrl}`, '_blank', 'width=600,height=400');
         }
 
         function shareLinkedIn() {
-            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`, '_blank', 'width=600,height=400');
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=₹{pageUrl}&title=₹{pageTitle}`, '_blank', 'width=600,height=400');
         }
 
         function shareWhatsApp() {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             const url = isMobile
-                ? `whatsapp://send?text=${pageTitle}%20${pageUrl}`
-                : `https://web.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+                ? `whatsapp://send?text=₹{pageTitle}%20₹{pageUrl}`
+                : `https://web.whatsapp.com/send?text=₹{pageTitle}%20₹{pageUrl}`;
             window.open(url, '_blank');
         }
 
@@ -3449,7 +3449,7 @@ describe('Button', () => {
                     icon.classList.add('fas');
                     btn.style.color = 'var(--primary)';
                     const count = parseInt(btn.textContent.trim()) + 1;
-                    btn.innerHTML = `<i class="fas fa-thumbs-up"></i> ${count}`;
+                    btn.innerHTML = `<i class="fas fa-thumbs-up"></i> ₹{count}`;
                 }
             });
         });

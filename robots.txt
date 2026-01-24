@@ -21,6 +21,6 @@ Allow: /images/
 Allow: /js/
 
 # Block common unnecessary files
-Disallow: /*.json$
-Disallow: /*.xml$
+Disallow: /*.json₹
+Disallow: /*.xml₹
 Disallow: /404.html

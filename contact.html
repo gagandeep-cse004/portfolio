@@ -1947,7 +1947,7 @@
                                 </div>
                                 <div class="contact-info-item-content">
                                     <h4>Location</h4>
-                                    <p>123 Tech Street, Suite 100<br>New York, NY 10001, USA</p>
+                                    <p>Vill Khad Bathlour<br>Rupnagar,Punjab</p>
                                 </div>
                             </div>
 
@@ -2050,9 +2050,9 @@
                             <label for="budget">Project Budget</label>
                             <div class="budget-range">
                                 <div class="budget-labels">
-                                    <span>$1,000</span>
-                                    <span class="current-budget" id="budgetValue">$5,000</span>
-                                    <span>$50,000+</span>
+                                    <span>₹1,000</span>
+                                    <span class="current-budget" id="budgetValue">₹5,000</span>
+                                    <span>₹50,000+</span>
                                 </div>
                                 <input type="range" id="budget" name="budget" class="budget-slider" min="1000"
                                     max="50000" value="5000" step="1000">
@@ -2201,7 +2201,7 @@
                         <div class="faq-answer-content">
                             Yes! I provide 30 days of free support after project launch for any bugs or minor
                             adjustments.
-                            After that, I offer monthly maintenance packages starting at $299/month or hourly support
+                            After that, I offer monthly maintenance packages starting at ₹299/month or hourly support
                             as needed.
                         </div>
                     </div>
@@ -2513,9 +2513,9 @@
         budgetSlider.addEventListener('input', function () {
             const value = parseInt(this.value);
             if (value >= 50000) {
-                budgetValue.textContent = '$50,000+';
+                budgetValue.textContent = '₹50,000+';
             } else {
-                budgetValue.textContent = '$' + value.toLocaleString();
+                budgetValue.textContent = '₹' + value.toLocaleString();
             }
         });
 
@@ -2576,7 +2576,7 @@
                 }
 
                 // Validate email format
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+₹/;
                 if (!emailRegex.test(formData.email)) {
                     throw new Error('Please enter a valid email address.');
                 }
@@ -2599,7 +2599,7 @@
 
                 // Reset form
                 contactForm.reset();
-                budgetValue.textContent = '$5,000';
+                budgetValue.textContent = '₹5,000';
                 budgetSlider.value = 5000;
 
                 // Reset button
@@ -2631,11 +2631,11 @@
 
             // Create notification element
             const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
+            notification.className = `notification notification-₹{type}`;
             notification.innerHTML = `
                 <div class="notification-content">
-                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                    <span>${message}</span>
+                    <i class="fas ₹{type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>₹{message}</span>
                     <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
                         <i class="fas fa-times"></i>
                     </button>
@@ -2657,7 +2657,7 @@
                 align-items: center;
                 gap: 12px;
                 padding: 16px 20px;
-                background: ${type === 'success' ? '#10B981' : '#EF4444'};
+                background: ₹{type === 'success' ? '#10B981' : '#EF4444'};
                 color: white;
                 border-radius: 12px;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -2739,7 +2739,7 @@
                 const files = this.files;
                 if (files.length > 0) {
                     const fileNames = Array.from(files).map(f => f.name).join(', ');
-                    fileUploadLabel.querySelector('p').innerHTML = `<strong>${files.length} file(s) selected:</strong> ${fileNames}`;
+                    fileUploadLabel.querySelector('p').innerHTML = `<strong>₹{files.length} file(s) selected:</strong> ₹{fileNames}`;
                 }
             });
         }
@@ -2792,7 +2792,7 @@
         document.querySelectorAll('.contact-card, .faq-item, .testimonial-card').forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            el.style.transition = `all 0.6s ease ₹{index * 0.1}s`;
         });
 
         window.addEventListener('scroll', animateOnScroll);
@@ -2808,7 +2808,7 @@
 
         // Add real-time validation
         inputs.email.addEventListener('blur', function () {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+₹/;
             if (this.value && !emailRegex.test(this.value)) {
                 this.style.borderColor = '#EF4444';
                 showFieldError(this, 'Please enter a valid email address');

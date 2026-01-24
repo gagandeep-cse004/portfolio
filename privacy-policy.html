@@ -2421,7 +2421,7 @@
         document.querySelectorAll('.policy-block, .right-card, .cookie-card, .related-card').forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
-            el.style.transition = `all 0.5s ease ${index * 0.05}s`;
+            el.style.transition = `all 0.5s ease ₹{index * 0.05}s`;
         });
 
         window.addEventListener('scroll', animateOnScroll);
