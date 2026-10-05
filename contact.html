@@ -1791,7 +1791,7 @@
                 <a href="https://twitter.com" target="_blank" class="social-link">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://instagram.com/13__gagan735" target="_blank" class="social-link">
+                <a href="https://instagram.com/its__gagandeep04" target="_blank" class="social-link">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
@@ -1975,7 +1975,7 @@
                                 <a href="https://twitter.com" class="contact-social-link">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="https://instagram.com/13__gagan735" class="contact-social-link">
+                                <a href="https://instagram.com/its__gagandeep04" class="contact-social-link">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                                 <!-- <a href="#" class="contact-social-link">
@@ -2209,12 +2209,12 @@
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        Do you work with clients remotely?
+                        Do you work with people remotely?
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            Absolutely! I work with clients worldwide. Most of my projects are handled remotely using
+                            Absolutely! I work with peoples worldwide. Most of my projects are handled remotely using
                             tools like Zoom, Slack, and project management software. I'm flexible with time zones
                             and can accommodate different schedules.
                         </div>
@@ -2256,7 +2256,7 @@
     <section class="testimonials-section section">
         <div class="container">
             <div class="testimonials-header">
-                <h2>What Clients Say</h2>
+                <h2>What peoples Say</h2>
                 <p style="color: var(--gray); font-size: 1.1rem;">Don't just take my word for it</p>
             </div>
 
@@ -2373,7 +2373,7 @@
                         <a href="https://www.linkedin.com/in/gagandeep-singh-full-stack-developer/"
                             class="social-link"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://twitter.com" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/13__gagan735" class="social-link"><i
+                        <a href="https://instagram.com/its__gagandeep04" class="social-link"><i
                                 class="fab fa-instagram"></i></a>
                     </div>
                 </div>
@@ -2449,13 +2449,11 @@
     </button>
 
 
-
-    <!-- JavaScript -->
     <!-- JavaScript -->
     <script>
         // ==================== CONFIGURATION ====================
         // Replace with your Google Apps Script Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzefULCtDTTpdSzorcn2q_l0dXnCNa5lnd2UBokK9D1CuSDdSaCrf_8PlIyzXuuSvQu/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCLGFZ7i264KVZ0zNqOo2TVBOOfVD_o7drLsmwSuVgXCtb8lyyrMmAmMNYXZ24puGamg/exec';
 
         // ==================== SCROLL EVENTS ====================
         let lastScroll = 0;
@@ -2576,7 +2574,7 @@
                 }
 
                 // Validate email format
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+₹/;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(formData.email)) {
                     throw new Error('Please enter a valid email address.');
                 }
@@ -2631,11 +2629,11 @@
 
             // Create notification element
             const notification = document.createElement('div');
-            notification.className = `notification notification-₹{type}`;
+            notification.className = `notification notification-${type}`;
             notification.innerHTML = `
                 <div class="notification-content">
-                    <i class="fas ₹{type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                    <span>₹{message}</span>
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
                     <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
                         <i class="fas fa-times"></i>
                     </button>
@@ -2657,7 +2655,7 @@
                 align-items: center;
                 gap: 12px;
                 padding: 16px 20px;
-                background: ₹{type === 'success' ? '#10B981' : '#EF4444'};
+                background: ${type === 'success' ? '#10B981' : '#EF4444'};
                 color: white;
                 border-radius: 12px;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -2739,7 +2737,7 @@
                 const files = this.files;
                 if (files.length > 0) {
                     const fileNames = Array.from(files).map(f => f.name).join(', ');
-                    fileUploadLabel.querySelector('p').innerHTML = `<strong>₹{files.length} file(s) selected:</strong> ₹{fileNames}`;
+                    fileUploadLabel.querySelector('p').innerHTML = `<strong>${files.length} file(s) selected:</strong> ${fileNames}`;
                 }
             });
         }
@@ -2792,7 +2790,7 @@
         document.querySelectorAll('.contact-card, .faq-item, .testimonial-card').forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = `all 0.6s ease ₹{index * 0.1}s`;
+            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
         });
 
         window.addEventListener('scroll', animateOnScroll);
@@ -2808,12 +2806,13 @@
 
         // Add real-time validation
         inputs.email.addEventListener('blur', function () {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+₹/;
-            if (this.value && !emailRegex.test(this.value)) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const email = this.value.trim();
+            if (email && !emailRegex.test(email)) {
                 this.style.borderColor = '#EF4444';
                 showFieldError(this, 'Please enter a valid email address');
             } else {
-                this.style.borderColor = '#10B981';
+                this.style.borderColor = email ? '#10B981' : '';
                 removeFieldError(this);
             }
         });
